@@ -5,9 +5,9 @@ import (
 	"io"
 	"testing"
 
-	http "github.com/bogdanfinn/fhttp"
-	tls_client "github.com/bogdanfinn/tls-client"
-	"github.com/bogdanfinn/tls-client/shared"
+	http "github.com/ahnse0/fhttp"
+	tls_client "github.com/ahnse0/tls-client"
+	"github.com/ahnse0/tls-client/shared"
 	"github.com/stretchr/testify/assert"
 )
 

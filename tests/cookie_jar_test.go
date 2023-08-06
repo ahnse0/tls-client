@@ -5,8 +5,8 @@ import (
 	"net/url"
 	"testing"
 
-	http "github.com/bogdanfinn/fhttp"
-	tls_client "github.com/bogdanfinn/tls-client"
+	http "github.com/ahnse0/fhttp"
+	tls_client "github.com/ahnse0/tls-client"
 	"github.com/stretchr/testify/assert"
 )
 

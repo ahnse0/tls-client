@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	http "github.com/bogdanfinn/fhttp"
-	"github.com/bogdanfinn/fhttp/httptest"
-	tls_client "github.com/bogdanfinn/tls-client"
+	http "github.com/ahnse0/fhttp"
+	"github.com/ahnse0/fhttp/httptest"
+	tls_client "github.com/ahnse0/tls-client"
 	"github.com/stretchr/testify/assert"
 )
 

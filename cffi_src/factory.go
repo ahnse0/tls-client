@@ -10,11 +10,11 @@ import (
 	"os"
 	"sync"
 
-	http "github.com/bogdanfinn/fhttp"
-	"github.com/bogdanfinn/fhttp/cookiejar"
-	"github.com/bogdanfinn/fhttp/http2"
-	"github.com/bogdanfinn/tls-client"
-	tls "github.com/bogdanfinn/utls"
+	http "github.com/ahnse0/fhttp"
+	"github.com/ahnse0/fhttp/cookiejar"
+	"github.com/ahnse0/fhttp/http2"
+	"github.com/ahnse0/tls-client"
+	tls "github.com/ahnse0/utls"
 	"github.com/google/uuid"
 )
 
