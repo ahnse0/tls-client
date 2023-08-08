@@ -206,9 +206,9 @@ func BuildResponse(sessionId string, withSession bool, resp *http.Response, cook
 	finalResponse := string(respBodyBytes)
 
 	if isByteResponse {
-		mimeType := http.DetectContentType(respBodyBytes)
-		base64Encoding := fmt.Sprintf("data:%s;base64,", mimeType)
-		base64Encoding += base64.StdEncoding.EncodeToString(respBodyBytes)
+		//mimeType := http.DetectContentType(respBodyBytes)
+		//base64Encoding := fmt.Sprintf("data:%s;base64,", mimeType)
+		base64Encoding := base64.StdEncoding.EncodeToString(respBodyBytes)
 
 		finalResponse = base64Encoding
 	}
