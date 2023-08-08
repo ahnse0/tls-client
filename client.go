@@ -345,9 +345,11 @@ func (c *httpClient) Do(req *http.Request) (*http.Response, error) {
 			}
 			defer resp.Body.Close()
 
+			//detail, err := iconv.ConvertString(string(buf), "euc-kr", "utf-8")
 			responseBody := io.NopCloser(bytes.NewBuffer(buf))
-
-			c.logger.Debug("response body payload: %s", string(buf))
+			//responseBody := io.NopCloser(strings.NewReader(detail))
+			//c.logger.Debug("response body payload: %s", string(buf))
+			//c.logger.Debug("response body payload: %s", detail)
 
 			resp.Body = responseBody
 		}

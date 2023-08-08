@@ -19,13 +19,7 @@ import (
 )
 
 func main() {
-	sslPinning()
 	requestToppsAsChrome107Client()
-	postAsTlsClient()
-	requestWithFollowRedirectSwitch()
-	requestWithCustomClient()
-	rotateProxiesOnClient()
-	downloadImageWithTlsClient()
 }
 
 func sslPinning() {
@@ -120,7 +114,7 @@ func requestToppsAsChrome107Client() {
 		return
 	}
 
-	req, err := http.NewRequest(http.MethodGet, "https://www.topps.com/", nil)
+	req, err := http.NewRequest(http.MethodGet, "https://www.atmos-seoul.com/", nil)
 	if err != nil {
 		log.Println(err)
 		return
@@ -167,15 +161,15 @@ func requestToppsAsChrome107Client() {
 
 	defer resp.Body.Close()
 
-	log.Printf("requesting topps as chrome107 => status code: %d\n", resp.StatusCode)
-
-	u, err := url.Parse("https://www.topps.com/")
-	if err != nil {
-		log.Println(err)
-		return
-	}
-
-	log.Printf("tls client cookies for url %s : %v\n", u.String(), client.GetCookies(u))
+	//log.Printf("requesting topps as chrome107 => status code: %d\n", resp.StatusCode)
+	//
+	//u, err := url.Parse("https://www.topps.com/")
+	//if err != nil {
+	//	log.Println(err)
+	//	return
+	//}
+	//
+	//log.Printf("tls client cookies for url %s : %v\n", u.String(), client.GetCookies(u))
 }
 
 func postAsTlsClient() {
