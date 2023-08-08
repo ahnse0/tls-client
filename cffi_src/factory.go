@@ -15,6 +15,7 @@ import (
 	"github.com/ahnse0/fhttp/http2"
 	"github.com/ahnse0/tls-client"
 	tls "github.com/ahnse0/utls"
+	"github.com/djimenez/iconv-go"
 	"github.com/google/uuid"
 )
 
@@ -181,6 +182,7 @@ func BuildResponse(sessionId string, withSession bool, resp *http.Response, cook
 	defer resp.Body.Close()
 
 	isByteResponse := input.IsByteResponse
+	isKoreaEncode := input.IsKoreaEncode
 
 	ce := resp.Header.Get("Content-Encoding")
 
@@ -211,6 +213,10 @@ func BuildResponse(sessionId string, withSession bool, resp *http.Response, cook
 		base64Encoding := base64.StdEncoding.EncodeToString(respBodyBytes)
 
 		finalResponse = base64Encoding
+	}
+
+	if isKoreaEncode {
+		finalResponse, _ = iconv.ConvertString(string(respBodyBytes), "euc-kr", "utf-8")
 	}
 
 	response := Response{
