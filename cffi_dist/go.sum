@@ -5,6 +5,8 @@ github.com/ahnse0/tls-client v1.5.0 h1:3S/aGJZoT0XgFtHDdKhUbUkUJ5dWR+Z183dLEG9SU
 github.com/ahnse0/tls-client v1.5.0/go.mod h1:I2ZQxc+wFsuDROfiUCjqCwrH0GR9O1GgBBuIDQlZRBo=
 github.com/ahnse0/tls-client v1.5.1 h1:fQQbtu5rAcp6Vhh1HoWgblUyi6AhbLHn1jCQawLEQu4=
 github.com/ahnse0/tls-client v1.5.1/go.mod h1:yaqf582pC8/XcC5fE7IOudtXdgt3x36sQvn/pSe48ls=
+github.com/ahnse0/tls-client v1.6.0 h1:sUJeD/NP4xiGbE76Rw1HSqhooPLEEEC/KQRT8+bWJgk=
+github.com/ahnse0/tls-client v1.6.0/go.mod h1:I2ZQxc+wFsuDROfiUCjqCwrH0GR9O1GgBBuIDQlZRBo=
 github.com/ahnse0/utls v1.4.0 h1:4mXUR4lYscAD/Rxb2a9ehg0dFtZ/Kt5Cy7sM7Gr1BHs=
 github.com/ahnse0/utls v1.4.0/go.mod h1:ZvaQDtxbP0gitK7+K2hICu8Do8cnFdbpKeIStZi4RV8=
 github.com/andybalholm/brotli v1.0.4 h1:V7DdXeJtZscaqfNuAdSRuRFzuiKlHSC/Zh3zl9qY3JY=
@@ -15,6 +17,8 @@ github.com/bogdanfinn/tls-client v1.5.0 h1:L/d4AL+8RRw+6o9wwhpii45I6RO2CEkgRV4Ne
 github.com/bogdanfinn/tls-client v1.5.0/go.mod h1:lgtqsHjoJYQMPz6H08bc8t30bmUaYnVjwtfVEzMGJDs=
 github.com/bogdanfinn/utls v1.5.16 h1:NhhWkegEcYETBMj9nvgO4lwvc6NcLH+znrXzO3gnw4M=
 github.com/bogdanfinn/utls v1.5.16/go.mod h1:mHeRCi69cUiEyVBkKONB1cAbLjRcZnlJbGzttmiuK4o=
+github.com/djimenez/iconv-go v0.0.0-20160305225143-8960e66bd3da h1:0qwwqQCLOOXPl58ljnq3sTJR7yRuMolM02vjxDh4ZVE=
+github.com/djimenez/iconv-go v0.0.0-20160305225143-8960e66bd3da/go.mod h1:ns+zIWBBchgfRdxNgIJWn2x6U95LQchxeqiN5Cgdgts=
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/klauspost/compress v1.15.12 h1:YClS/PImqYbn+UILDnqxQCZ3RehC9N318SU3kElDUEM=

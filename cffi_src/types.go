@@ -58,7 +58,8 @@ type RequestInput struct {
 	InsecureSkipVerify          bool                `json:"insecureSkipVerify"`
 	IsByteRequest               bool                `json:"isByteRequest"`
 	IsByteResponse              bool                `json:"isByteResponse"`
-	IsKoreaEncode               bool                `json:"isKoreaEncode"`
+	IsEuckrRequest              bool                `json:"isEuckrRequest"`
+	IsEuckrResponse             bool                `json:"isEuckrResponse"`
 	IsRotatingProxy             bool                `json:"isRotatingProxy"`
 	DisableIPV6                 bool                `json:"disableIPV6"`
 	LocalAddress                *string             `json:"localAddress"`

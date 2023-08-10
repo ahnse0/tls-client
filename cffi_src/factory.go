@@ -182,7 +182,7 @@ func BuildResponse(sessionId string, withSession bool, resp *http.Response, cook
 	defer resp.Body.Close()
 
 	isByteResponse := input.IsByteResponse
-	isKoreaEncode := input.IsKoreaEncode
+	isEuckrResponse := input.IsEuckrResponse
 
 	ce := resp.Header.Get("Content-Encoding")
 
@@ -215,7 +215,7 @@ func BuildResponse(sessionId string, withSession bool, resp *http.Response, cook
 		finalResponse = base64Encoding
 	}
 
-	if isKoreaEncode {
+	if isEuckrResponse {
 		finalResponse, _ = iconv.ConvertString(string(respBodyBytes), "euc-kr", "utf-8")
 	}
 
