@@ -110,9 +110,10 @@ func BuildRequest(input RequestInput) (*http.Request, *TLSClientError) {
 				return nil, NewTLSClientError(fmt.Errorf("failed to base64 decode request body: %w", err))
 			}
 		}
-
+		fmt.Println(input.RequestBody)
 		requestBody := bytes.NewBuffer(requestBodyString)
 		tlsReq, err = http.NewRequest(input.RequestMethod, input.RequestUrl, requestBody)
+		fmt.Println(requestBody)
 	} else {
 		tlsReq, err = http.NewRequest(input.RequestMethod, input.RequestUrl, nil)
 	}
