@@ -9,6 +9,8 @@ github.com/ahnse0/tls-client v1.6.0 h1:sUJeD/NP4xiGbE76Rw1HSqhooPLEEEC/KQRT8+bWJ
 github.com/ahnse0/tls-client v1.6.0/go.mod h1:I2ZQxc+wFsuDROfiUCjqCwrH0GR9O1GgBBuIDQlZRBo=
 github.com/ahnse0/tls-client v1.6.1 h1:kDS9cn4CitepQqdx8mG0BryyGuTUIJPUBQQC+XkGjtc=
 github.com/ahnse0/tls-client v1.6.1/go.mod h1:YB7wzTwZwRuPYizRuYKyke6T4bckTUA3Y1VwOx8MHM8=
+github.com/ahnse0/tls-client v1.6.2 h1:C0YstARuXF8xJ/n+6r8jKu0Eg8K/4zUIMt1ELjNxIB8=
+github.com/ahnse0/tls-client v1.6.2/go.mod h1:YB7wzTwZwRuPYizRuYKyke6T4bckTUA3Y1VwOx8MHM8=
 github.com/ahnse0/utls v1.4.0 h1:4mXUR4lYscAD/Rxb2a9ehg0dFtZ/Kt5Cy7sM7Gr1BHs=
 github.com/ahnse0/utls v1.4.0/go.mod h1:ZvaQDtxbP0gitK7+K2hICu8Do8cnFdbpKeIStZi4RV8=
 github.com/andybalholm/brotli v1.0.4 h1:V7DdXeJtZscaqfNuAdSRuRFzuiKlHSC/Zh3zl9qY3JY=

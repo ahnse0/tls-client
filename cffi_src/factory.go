@@ -110,10 +110,10 @@ func BuildRequest(input RequestInput) (*http.Request, *TLSClientError) {
 				return nil, NewTLSClientError(fmt.Errorf("failed to base64 decode request body: %w", err))
 			}
 		}
-		fmt.Println(input.RequestBody)
+
 		requestBody := bytes.NewBuffer(requestBodyString)
+
 		tlsReq, err = http.NewRequest(input.RequestMethod, input.RequestUrl, requestBody)
-		fmt.Println(requestBody)
 	} else {
 		tlsReq, err = http.NewRequest(input.RequestMethod, input.RequestUrl, nil)
 	}
@@ -209,9 +209,9 @@ func BuildResponse(sessionId string, withSession bool, resp *http.Response, cook
 	finalResponse := string(respBodyBytes)
 
 	if isByteResponse {
-		//mimeType := http.DetectContentType(respBodyBytes)
-		//base64Encoding := fmt.Sprintf("data:%s;base64,", mimeType)
-		base64Encoding := base64.StdEncoding.EncodeToString(respBodyBytes)
+		mimeType := http.DetectContentType(respBodyBytes)
+		base64Encoding := fmt.Sprintf("data:%s;base64,", mimeType)
+		base64Encoding += base64.StdEncoding.EncodeToString(respBodyBytes)
 
 		finalResponse = base64Encoding
 	}
