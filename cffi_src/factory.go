@@ -222,7 +222,6 @@ func BuildResponse(sessionId string, withSession bool, resp *http.Response, cook
 		wr := transform.NewWriter(&bufs, korean.EUCKR.NewDecoder())
 		wr.Write(respBodyBytes)
 		wr.Close()
-		fmt.Println(bufs.String())
 		finalResponse = bufs.String()
 	}
 
