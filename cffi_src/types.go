@@ -58,7 +58,6 @@ type RequestInput struct {
 	InsecureSkipVerify          bool                `json:"insecureSkipVerify"`
 	IsByteRequest               bool                `json:"isByteRequest"`
 	IsByteResponse              bool                `json:"isByteResponse"`
-	IsEuckrRequest              bool                `json:"isEuckrRequest"`
 	IsEuckrResponse             bool                `json:"isEuckrResponse"`
 	IsRotatingProxy             bool                `json:"isRotatingProxy"`
 	DisableIPV6                 bool                `json:"disableIPV6"`

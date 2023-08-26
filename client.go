@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"golang.org/x/text/encoding/korean"
+	"golang.org/x/text/transform"
 	"io"
 	"net/url"
 	"strings"
@@ -345,11 +347,13 @@ func (c *httpClient) Do(req *http.Request) (*http.Response, error) {
 			}
 			defer resp.Body.Close()
 
-			//detail, err := iconv.ConvertString(string(buf), "euc-kr", "utf-8")
 			responseBody := io.NopCloser(bytes.NewBuffer(buf))
-			//responseBody := io.NopCloser(strings.NewReader(detail))
-			//c.logger.Debug("response body payload: %s", string(buf))
-			//c.logger.Debug("response body payload: %s", detail)
+
+			var bufs bytes.Buffer
+			wr := transform.NewWriter(&bufs, korean.EUCKR.NewDecoder())
+			wr.Write(buf)
+			wr.Close()
+			fmt.Println(bufs.String())
 
 			resp.Body = responseBody
 		}

@@ -5,6 +5,8 @@ import (
 	"bytes"
 	"encoding/base64"
 	"fmt"
+	"golang.org/x/text/encoding/korean"
+	"golang.org/x/text/transform"
 	"io"
 	"net"
 	"os"
@@ -15,7 +17,6 @@ import (
 	"github.com/ahnse0/fhttp/http2"
 	"github.com/ahnse0/tls-client"
 	tls "github.com/ahnse0/utls"
-	"github.com/djimenez/iconv-go"
 	"github.com/google/uuid"
 )
 
@@ -217,7 +218,12 @@ func BuildResponse(sessionId string, withSession bool, resp *http.Response, cook
 	}
 
 	if isEuckrResponse {
-		finalResponse, _ = iconv.ConvertString(string(respBodyBytes), "euc-kr", "utf-8")
+		var bufs bytes.Buffer
+		wr := transform.NewWriter(&bufs, korean.EUCKR.NewDecoder())
+		wr.Write(respBodyBytes)
+		wr.Close()
+		fmt.Println(bufs.String())
+		finalResponse = bufs.String()
 	}
 
 	response := Response{
