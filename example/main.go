@@ -19,7 +19,7 @@ import (
 )
 
 func main() {
-	requestToppsAsChrome107Client()
+	sslPinning()
 }
 
 func sslPinning() {
@@ -42,7 +42,7 @@ func sslPinning() {
 		tls_client.WithRandomTLSExtensionOrder(),
 		tls_client.WithCookieJar(jar),
 		tls_client.WithCertificatePinning(pins, tls_client.DefaultBadPinHandler),
-		tls_client.WithCharlesProxy("127.0.0.1", "8888"),
+		//tls_client.WithCharlesProxy("127.0.0.1", "8888"),
 	}
 
 	client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
