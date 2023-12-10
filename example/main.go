@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/ahnse0/tls-client/profiles"
 	"io"
 	"log"
 	"net/url"
@@ -38,7 +39,7 @@ func sslPinning() {
 
 	options := []tls_client.HttpClientOption{
 		tls_client.WithTimeoutSeconds(60),
-		tls_client.WithClientProfile(tls_client.Chrome_108),
+		tls_client.WithClientProfile(profiles.Chrome_117),
 		tls_client.WithRandomTLSExtensionOrder(),
 		tls_client.WithCookieJar(jar),
 		tls_client.WithCertificatePinning(pins, tls_client.DefaultBadPinHandler),
@@ -100,7 +101,7 @@ func requestToppsAsChrome107Client() {
 
 	options := []tls_client.HttpClientOption{
 		tls_client.WithTimeoutSeconds(30),
-		tls_client.WithClientProfile(tls_client.Chrome_107),
+		tls_client.WithClientProfile(profiles.Chrome_117),
 		tls_client.WithDebug(),
 		// tls_client.WithProxyUrl("http://user:pass@host:port"),
 		// tls_client.WithNotFollowRedirects(),
@@ -175,7 +176,7 @@ func requestToppsAsChrome107Client() {
 func postAsTlsClient() {
 	options := []tls_client.HttpClientOption{
 		tls_client.WithTimeoutSeconds(30),
-		tls_client.WithClientProfile(tls_client.Chrome_107),
+		tls_client.WithClientProfile(profiles.Chrome_117),
 	}
 
 	client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
@@ -223,7 +224,7 @@ func postAsTlsClient() {
 func requestWithFollowRedirectSwitch() {
 	options := []tls_client.HttpClientOption{
 		tls_client.WithTimeoutSeconds(30),
-		tls_client.WithClientProfile(tls_client.Chrome_107),
+		tls_client.WithClientProfile(profiles.Chrome_117),
 		tls_client.WithNotFollowRedirects(),
 	}
 
@@ -299,7 +300,7 @@ func requestWithFollowRedirectSwitch() {
 func downloadImageWithTlsClient() {
 	options := []tls_client.HttpClientOption{
 		tls_client.WithTimeoutSeconds(30),
-		tls_client.WithClientProfile(tls_client.Chrome_107),
+		tls_client.WithClientProfile(profiles.Chrome_117),
 		tls_client.WithNotFollowRedirects(),
 	}
 
@@ -356,7 +357,7 @@ func downloadImageWithTlsClient() {
 func rotateProxiesOnClient() {
 	options := []tls_client.HttpClientOption{
 		tls_client.WithTimeoutSeconds(30),
-		tls_client.WithClientProfile(tls_client.Chrome_107),
+		tls_client.WithClientProfile(profiles.Chrome_117),
 		tls_client.WithProxyUrl("http://user:pass@host:port"),
 	}
 
@@ -555,7 +556,7 @@ func requestWithCustomClient() {
 		}, nil
 	}
 
-	customClientProfile := tls_client.NewClientProfile(tls.ClientHelloID{
+	customClientProfile := profiles.NewClientProfile(tls.ClientHelloID{
 		Client:      "MyCustomProfile",
 		Version:     "1",
 		Seed:        nil,

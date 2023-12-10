@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/ahnse0/tls-client/profiles"
 	"golang.org/x/text/encoding/korean"
 	"golang.org/x/text/transform"
 	"io"
@@ -51,7 +52,7 @@ var DefaultTimeoutSeconds = 30
 
 var DefaultOptions = []HttpClientOption{
 	WithTimeoutSeconds(DefaultTimeoutSeconds),
-	WithClientProfile(DefaultClientProfile),
+	WithClientProfile(profiles.DefaultClientProfile),
 	WithRandomTLSExtensionOrder(),
 	WithNotFollowRedirects(),
 }
@@ -68,7 +69,7 @@ func NewHttpClient(logger Logger, options ...HttpClientOption) (HttpClient, erro
 		followRedirects:    true,
 		badPinHandler:      nil,
 		customRedirectFunc: nil,
-		clientProfile:      DefaultClientProfile,
+		clientProfile:      profiles.DefaultClientProfile,
 		timeout:            time.Duration(DefaultTimeoutSeconds) * time.Second,
 	}
 
@@ -111,14 +112,14 @@ func validateConfig(_ *httpClientConfig) error {
 	return nil
 }
 
-func buildFromConfig(config *httpClientConfig) (*http.Client, ClientProfile, error) {
+func buildFromConfig(config *httpClientConfig) (*http.Client, profiles.ClientProfile, error) {
 	var dialer proxy.ContextDialer
 	dialer = newDirectDialer(config.timeout, config.localAddr)
 
 	if config.proxyUrl != "" {
 		proxyDialer, err := newConnectDialer(config.proxyUrl, config.timeout, config.localAddr)
 		if err != nil {
-			return nil, ClientProfile{}, err
+			return nil, profiles.ClientProfile{}, err
 		}
 
 		dialer = proxyDialer
