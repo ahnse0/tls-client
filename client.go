@@ -350,13 +350,19 @@ func (c *httpClient) Do(req *http.Request) (*http.Response, error) {
 
 			responseBody := io.NopCloser(bytes.NewBuffer(buf))
 
-			var bufs bytes.Buffer
-			wr := transform.NewWriter(&bufs, korean.EUCKR.NewDecoder())
-			wr.Write(buf)
-			wr.Close()
-			fmt.Println(bufs.String())
+			finalResponse := string(buf)
+
+			if c.config.isEuckrResponse {
+				var bufs bytes.Buffer
+				wr := transform.NewWriter(&bufs, korean.EUCKR.NewDecoder())
+				wr.Write(buf)
+				wr.Close()
+				finalResponse = bufs.String()
+			}
 
 			resp.Body = responseBody
+
+			c.logger.Debug("body on response:\n%s", finalResponse)
 		}
 
 		c.logger.Debug("raw response bytes received over wire: %d (%d kb)", len(responseBytes), len(responseBytes)/1024)

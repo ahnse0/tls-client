@@ -49,7 +49,8 @@ type httpClientConfig struct {
 	timeout                     time.Duration
 	localAddr                   *net.TCPAddr
 	// Establish a connection to origin server via ipv4 only
-	disableIPV6 bool
+	disableIPV6     bool
+	isEuckrResponse bool
 }
 
 // WithProxyUrl configures a HTTP client to use the specified proxy URL.
@@ -216,5 +217,11 @@ func WithServerNameOverwrite(serverName string) HttpClientOption {
 func WithDisableIPV6() HttpClientOption {
 	return func(config *httpClientConfig) {
 		config.disableIPV6 = true
+	}
+}
+
+func WithIsEuckrResponse() HttpClientOption {
+	return func(config *httpClientConfig) {
+		config.isEuckrResponse = true
 	}
 }

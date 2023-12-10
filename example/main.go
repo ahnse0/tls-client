@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/ahnse0/tls-client/profiles"
+	"golang.org/x/text/encoding/korean"
+	"golang.org/x/text/transform"
 	"io"
 	"log"
 	"net/url"
@@ -20,7 +22,101 @@ import (
 )
 
 func main() {
-	sslPinning()
+	isEuckr := false
+	jar := tls_client.NewCookieJar()
+
+	options := []tls_client.HttpClientOption{
+		tls_client.WithTimeoutSeconds(30),
+		tls_client.WithClientProfile(profiles.Chrome_117),
+		tls_client.WithCookieJar(jar),
+	}
+
+	client, err := tls_client.NewHttpClient(tls_client.NewNoopLogger(), options...)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	data := url.Values{}
+	data.Add("password", "ekfskfk1!")
+	data.Add("email", "ahncount@gmail.com")
+
+	//req, err := http.NewRequest(http.MethodPost, "https://api.kream.co.kr/api/auth/login", strings.NewReader(`{"email":"ahncount@gmail.com","password":"ekfskfk1!"}`))
+	//req, err := http.NewRequest(http.MethodPost, "https://api.kream.co.kr/api/auth/login", strings.NewReader(data.Encode()))
+	req, err := http.NewRequest(http.MethodGet, "https://kream.co.kr/login", nil)
+	//req, err := http.NewRequest(http.MethodGet, "https://atmos-seoul.com", nil)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	req.Header = http.Header{
+		"cache-control":             {"max-age=0"},
+		"upgrade-insecure-requests": {"1"},
+		"user-agent":                {"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36"},
+		"accept":                    {"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"},
+		"sec-fetch-site":            {"same-origin"},
+		"sec-fetch-mode":            {"navigate"},
+		"sec-fetch-user":            {"?1"},
+		"sec-fetch-dest":            {"document"},
+		"sec-ch-ua":                 {"\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"117\", \"Google Chrome\";v=\"117\""},
+		"sec-ch-ua-mobile":          {"?0"},
+		"sec-ch-ua-platform":        {"macOS"},
+		"referer":                   {"https://kream.co.kr/"},
+		"accept-encoding":           {"gzip, deflate, br"},
+		"accept-language":           {"ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7"},
+		"content-type":              {"application/json"},
+		"x-kream-api-version":       {"26"},
+		"x-kream-client-locale":     {"ko-Kore_KR"},
+		http.HeaderOrderKey: {
+			"cache-control",
+			"upgrade-insecure-requests",
+			"user-agent",
+			"accept",
+			"sec-fetch-site",
+			"sec-fetch-mode",
+			"sec-fetch-user",
+			"sec-fetch-dest",
+			"sec-ch-ua",
+			"sec-ch-ua-mobile",
+			"sec-ch-ua-platform",
+			"referer",
+			"accept-encoding",
+			"accept-language",
+			"content-type",
+			"x-kream-api-version",
+			"x-kream-client-locale",
+		},
+	}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	log.Println(fmt.Sprintf("status code: %d", resp.StatusCode))
+
+	readBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	defer resp.Body.Close()
+
+	body := string(readBytes)
+
+	if isEuckr {
+		var bufs bytes.Buffer
+		wr := transform.NewWriter(&bufs, korean.EUCKR.NewDecoder())
+		wr.Write(readBytes)
+		wr.Close()
+		body = bufs.String()
+	}
+
+	log.Println(body)
+
 }
 
 func sslPinning() {
@@ -78,6 +174,10 @@ func sslPinning() {
 			"sec-fetch-dest",
 			"user-agent",
 		},
+	}
+
+	for k, e := range req.Header {
+		log.Println(k, ":", e)
 	}
 
 	resp, err := client.Do(req)
