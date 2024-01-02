@@ -1006,6 +1006,57 @@ var KreamIos = ClientProfile{
 					tls.TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA,
 					tls.TLS_RSA_WITH_3DES_EDE_CBC_SHA,
 				},
+				CompressionMethods: []uint8{
+					tls.CompressionNone,
+				},
+				Extensions: []tls.TLSExtension{
+					&tls.UtlsGREASEExtension{},
+					&tls.SNIExtension{},
+					&tls.RenegotiationInfoExtension{Renegotiation: tls.RenegotiateOnceAsClient},
+					&tls.SupportedCurvesExtension{Curves: []tls.CurveID{
+						tls.CurveID(tls.GREASE_PLACEHOLDER),
+						tls.X25519,
+						tls.CurveP256,
+						tls.CurveP384,
+						tls.CurveP521,
+					}},
+					&tls.SupportedPointsExtension{SupportedPoints: []byte{
+						tls.PointFormatUncompressed,
+					}},
+					&tls.ALPNExtension{AlpnProtocols: []string{"h2", "http/1.1"}},
+					&tls.StatusRequestExtension{},
+					&tls.SignatureAlgorithmsExtension{SupportedSignatureAlgorithms: []tls.SignatureScheme{
+						tls.ECDSAWithP256AndSHA256,
+						tls.PSSWithSHA256,
+						tls.PKCS1WithSHA256,
+						tls.ECDSAWithP384AndSHA384,
+						tls.ECDSAWithSHA1,
+						tls.PSSWithSHA384,
+						tls.PSSWithSHA384,
+						tls.PKCS1WithSHA384,
+						tls.PSSWithSHA512,
+						tls.PKCS1WithSHA512,
+						tls.PKCS1WithSHA1,
+					}},
+					&tls.SCTExtension{},
+					&tls.KeyShareExtension{KeyShares: []tls.KeyShare{
+						{Group: tls.CurveID(tls.GREASE_PLACEHOLDER), Data: []byte{0}},
+						{Group: tls.X25519},
+					}},
+					&tls.PSKKeyExchangeModesExtension{Modes: []uint8{
+						tls.PskModeDHE,
+					}},
+					&tls.SupportedVersionsExtension{Versions: []uint16{
+						tls.GREASE_PLACEHOLDER,
+						tls.VersionTLS13,
+						tls.VersionTLS12,
+					}},
+					&tls.UtlsCompressCertExtension{Algorithms: []tls.CertCompressionAlgo{
+						tls.CertCompressionZlib,
+					}},
+					&tls.UtlsGREASEExtension{},
+					&tls.UtlsPaddingExtension{GetPaddingLen: tls.BoringPaddingStyle},
+				},
 			}, nil
 		},
 	},
