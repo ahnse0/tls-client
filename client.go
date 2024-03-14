@@ -326,7 +326,7 @@ func (c *httpClient) Do(req *http.Request) (*http.Response, error) {
 	resp, err := c.Client.Do(req)
 	if err != nil {
 		c.logger.Debug("failed to do request: %s", err.Error())
-		return nil, err
+		//return nil, err // 리턴시 에러?
 	}
 
 	c.logger.Debug("headers on request:\n%v", req.Header)
