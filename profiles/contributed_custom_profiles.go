@@ -980,31 +980,12 @@ var Okhttp4Android7 = ClientProfile{
 var KreamIos = ClientProfile{
 	clientHelloId: tls.ClientHelloID{
 		Client:  "KreamIos",
-		Version: "4.17.1",
+		Version: "5.2.0",
 		Seed:    nil,
 		SpecFactory: func() (tls.ClientHelloSpec, error) {
 			return tls.ClientHelloSpec{
 				CipherSuites: []uint16{
 					tls.TLS_AES_128_GCM_SHA256,
-					tls.TLS_AES_256_GCM_SHA384,
-					tls.TLS_CHACHA20_POLY1305_SHA256,
-					tls.TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
-					tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-					tls.TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256,
-					tls.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
-					tls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-					tls.TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,
-					tls.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA,
-					tls.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,
-					tls.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
-					tls.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,
-					tls.TLS_RSA_WITH_AES_256_GCM_SHA384,
-					tls.TLS_RSA_WITH_AES_128_GCM_SHA256,
-					tls.TLS_RSA_WITH_AES_256_CBC_SHA,
-					tls.TLS_RSA_WITH_AES_128_CBC_SHA,
-					tls.TLS_ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA,
-					tls.TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA,
-					tls.TLS_RSA_WITH_3DES_EDE_CBC_SHA,
 				},
 				CompressionMethods: []uint8{
 					tls.CompressionNone,
@@ -1012,7 +993,6 @@ var KreamIos = ClientProfile{
 				Extensions: []tls.TLSExtension{
 					&tls.UtlsGREASEExtension{},
 					&tls.SNIExtension{},
-					&tls.RenegotiationInfoExtension{Renegotiation: tls.RenegotiateOnceAsClient},
 					&tls.SupportedCurvesExtension{Curves: []tls.CurveID{
 						tls.CurveID(tls.GREASE_PLACEHOLDER),
 						tls.X25519,
@@ -1032,7 +1012,6 @@ var KreamIos = ClientProfile{
 						tls.ECDSAWithP384AndSHA384,
 						tls.ECDSAWithSHA1,
 						tls.PSSWithSHA384,
-						tls.PSSWithSHA384,
 						tls.PKCS1WithSHA384,
 						tls.PSSWithSHA512,
 						tls.PKCS1WithSHA512,
@@ -1040,16 +1019,17 @@ var KreamIos = ClientProfile{
 					}},
 					&tls.SCTExtension{},
 					&tls.KeyShareExtension{KeyShares: []tls.KeyShare{
-						{Group: tls.CurveID(tls.GREASE_PLACEHOLDER), Data: []byte{0}},
+						{Group: tls.CurveID(tls.GREASE_PLACEHOLDER), Data: []byte{00}},
 						{Group: tls.X25519},
 					}},
 					&tls.PSKKeyExchangeModesExtension{Modes: []uint8{
 						tls.PskModeDHE,
 					}},
 					&tls.SupportedVersionsExtension{Versions: []uint16{
-						tls.GREASE_PLACEHOLDER,
 						tls.VersionTLS13,
 						tls.VersionTLS12,
+						tls.VersionTLS11,
+						tls.VersionTLS10,
 					}},
 					&tls.UtlsCompressCertExtension{Algorithms: []tls.CertCompressionAlgo{
 						tls.CertCompressionZlib,
@@ -1063,9 +1043,9 @@ var KreamIos = ClientProfile{
 	settings: map[http2.SettingID]uint32{
 		http2.SettingHeaderTableSize:      4096,
 		http2.SettingEnablePush:           1,
-		http2.SettingMaxConcurrentStreams: 100,
-		http2.SettingInitialWindowSize:    2097152,
-		http2.SettingMaxFrameSize:         16384,
+		http2.SettingMaxConcurrentStreams: 128,
+		http2.SettingInitialWindowSize:    65536,
+		http2.SettingMaxFrameSize:         16777215,
 	},
 	settingsOrder: []http2.SettingID{
 		http2.SettingHeaderTableSize,
@@ -1077,9 +1057,9 @@ var KreamIos = ClientProfile{
 	headerPriority: &http2.PriorityParam{},
 	pseudoHeaderOrder: []string{
 		":method",
+		":scheme",
 		":path",
 		":authority",
-		":scheme",
 	},
 	connectionFlow: 16711681,
 }
