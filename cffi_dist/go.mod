@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/ahnse0/fhttp v1.2.0
-	github.com/ahnse0/tls-client v1.8.0
+	github.com/ahnse0/tls-client v1.8.6
 	github.com/google/uuid v1.3.0
 )
 

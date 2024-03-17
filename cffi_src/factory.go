@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"encoding/base64"
 	"fmt"
+	"github.com/ahnse0/tls-client/profiles"
 	"golang.org/x/text/encoding/korean"
 	"golang.org/x/text/transform"
 	"io"
@@ -268,7 +269,7 @@ func getTlsClient(requestInput RequestInput, sessionId string, withSession bool)
 		return modifiedClient, nil
 	}
 
-	clientProfile := tls_client.DefaultClientProfile
+	clientProfile := profiles.DefaultClientProfile
 
 	if requestInput.CustomTlsClient != nil {
 		clientHelloId, h2Settings, h2SettingsOrder, pseudoHeaderOrder, connectionFlow, priorityFrames, headerPriority, err := getCustomTlsClientProfile(requestInput.CustomTlsClient)
@@ -276,7 +277,7 @@ func getTlsClient(requestInput RequestInput, sessionId string, withSession bool)
 			return nil, fmt.Errorf("can not build http client out of custom tls client information: %w", err)
 		}
 
-		clientProfile = tls_client.NewClientProfile(clientHelloId, h2Settings, h2SettingsOrder, pseudoHeaderOrder, connectionFlow, priorityFrames, headerPriority)
+		clientProfile = profiles.NewClientProfile(clientHelloId, h2Settings, h2SettingsOrder, pseudoHeaderOrder, connectionFlow, priorityFrames, headerPriority)
 	}
 
 	if tlsClientIdentifier != "" {
@@ -448,11 +449,11 @@ func getCustomTlsClientProfile(customClientDefinition *CustomTlsClient) (tls.Cli
 	return clientHelloId, resolvedH2Settings, resolvedH2SettingsOrder, pseudoHeaderOrder, connectionFlow, priorityFrames, headerPriority, nil
 }
 
-func getTlsClientProfile(tlsClientIdentifier string) tls_client.ClientProfile {
-	tlsClientProfile, ok := tls_client.MappedTLSClients[tlsClientIdentifier]
+func getTlsClientProfile(tlsClientIdentifier string) profiles.ClientProfile {
+	tlsClientProfile, ok := profiles.MappedTLSClients[tlsClientIdentifier]
 
 	if !ok {
-		return tls_client.DefaultClientProfile
+		return profiles.DefaultClientProfile
 	}
 
 	return tlsClientProfile

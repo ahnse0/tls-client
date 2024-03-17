@@ -56,6 +56,7 @@ var MappedTLSClients = map[string]ClientProfile{
 	"okhttp4_android_11":     Okhttp4Android11,
 	"okhttp4_android_12":     Okhttp4Android12,
 	"okhttp4_android_13":     Okhttp4Android13,
+	"kream_ios":              KreamIos,
 }
 
 type ClientProfile struct {

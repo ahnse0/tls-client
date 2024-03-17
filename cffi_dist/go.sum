@@ -4,6 +4,8 @@ github.com/ahnse0/tls-client v1.7.0 h1:v3SDHZgW8umX0pYDH5H/lfv4Y/tIYW3ZQr28/ArVh
 github.com/ahnse0/tls-client v1.7.0/go.mod h1:YB7wzTwZwRuPYizRuYKyke6T4bckTUA3Y1VwOx8MHM8=
 github.com/ahnse0/tls-client v1.8.0 h1:Uflc8yNgr5DPowTniM86YAYmENe+KSKGNHZ/RMhNkHw=
 github.com/ahnse0/tls-client v1.8.0/go.mod h1:5i+7R4xdU1hHDzuSa4q0rcmmwkrHXvAMzTfw6truB64=
+github.com/ahnse0/tls-client v1.8.6 h1:RTvZskSRyMgtZG+yTs0/XF+PsN6UADN89CVy+ppuT88=
+github.com/ahnse0/tls-client v1.8.6/go.mod h1:0haeNxKvf4FiBdPG74ishR9EyNZ/XlMj3lm28csadrA=
 github.com/ahnse0/utls v1.4.0 h1:4mXUR4lYscAD/Rxb2a9ehg0dFtZ/Kt5Cy7sM7Gr1BHs=
 github.com/ahnse0/utls v1.4.0/go.mod h1:ZvaQDtxbP0gitK7+K2hICu8Do8cnFdbpKeIStZi4RV8=
 github.com/andybalholm/brotli v1.0.5 h1:8uQZIdzKmjc/iuPu7O2ioW48L81FgatrcpfFmiq/cCs=
